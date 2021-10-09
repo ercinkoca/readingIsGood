@@ -42,7 +42,7 @@ public class OrderServiceImpl implements OrderService {
 			Customer customer = customerRepository.findByCustomerId(request.getCustomerId());
 
 			if (customer == null) {
-				throw new BusinessException(400, "Customer can not be found");
+				throw new BusinessException(112, "Customer can not be found");
 			}
 
 			for (OrderModel om : request.getOrderList()) {
@@ -74,7 +74,7 @@ public class OrderServiceImpl implements OrderService {
 		try {
 			Order order = orderRepository.findByOrderId(id);
 			if (order == null) {
-				throw new BusinessException(404, "Order Cannot found.");
+				throw new BusinessException(113, "Order Cannot found.");
 			}
 			OrderModel om = new OrderModel();
 			om.setBookId(order.getBook().getBookId());
@@ -98,7 +98,7 @@ public class OrderServiceImpl implements OrderService {
 			List<Order> orderList = orderRepository.findByDates(startDate, endDate);
 			List<OrderModel> responseList = new ArrayList<>();
 			if (orderList.isEmpty()) {
-				throw new BusinessException(401, "OrderList can not found");
+				throw new BusinessException(114, "OrderList can not found");
 			}
 			for (Order o : orderList) {
 				OrderModel om = new OrderModel();
@@ -120,21 +120,21 @@ public class OrderServiceImpl implements OrderService {
 	private void validateOrderRequest(OrderRequest request) {
 		List<OrderModel> orderList = request.getOrderList();
 		if (request.getCustomerId() == null || request.getCustomerId() == 0) {
-			throw new BusinessException(401, "Customer id can not be null");
+			throw new BusinessException(115, "Customer id can not be null");
 		}
 
 		for (OrderModel om : orderList) {
 			if (om.getBookId() == null || om.getBookId() == 0) {
-				throw new BusinessException(402, "Book id can not be null");
+				throw new BusinessException(116, "Book id can not be null");
 			}
 			if (om.getStartDate() == null) {
-				throw new BusinessException(403, "Start date can not be null");
+				throw new BusinessException(117, "Start date can not be null");
 			}
 			if (om.getEndDate() == null) {
-				throw new BusinessException(403, "End date can not be null");
+				throw new BusinessException(118, "End date can not be null");
 			}
 			if (om.getBookCount() <= 0) {
-				throw new BusinessException(404, "Book count can not be zero or minus");
+				throw new BusinessException(119, "Book count can not be zero or minus");
 			}
 		}
 	}
@@ -142,7 +142,7 @@ public class OrderServiceImpl implements OrderService {
 	private Book bookControl(Long bookId, int orderBookCount) {
 		Book book = bookRepository.findByBookId(bookId);
 		if (book.getBookCount() - orderBookCount <= 0) {
-			throw new BusinessException(401, "There is not enough book on the stocks");
+			throw new BusinessException(120, "There is not enough book on the stocks");
 		}
 		book.setBookCount(book.getBookCount() - orderBookCount);
 		bookRepository.save(book);

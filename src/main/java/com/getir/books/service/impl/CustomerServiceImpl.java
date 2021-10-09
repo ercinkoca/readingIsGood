@@ -69,7 +69,7 @@ public class CustomerServiceImpl implements CustomerService {
 			List<OrderModel> responseList = new ArrayList<>();
 			Customer customer = customerRepository.findByCustomerId(id);
 			if (customer == null) {
-				throw new BusinessException(410, "Customer can not found");
+				throw new BusinessException(106, "Customer can not found");
 			}
 			List<Order> orderList = customer.getOrderList();
 			for (Order o : orderList) {
@@ -94,17 +94,17 @@ public class CustomerServiceImpl implements CustomerService {
 	private void validateCustomerRequest(CustomerRequest request) {
 		LOGGER.error("Request Validation Failed");
 		if (request.getCustomerName().isEmpty()) {
-			throw new BusinessException(401, "Customer name can not be null");
+			throw new BusinessException(107, "Customer name can not be null");
 		}
 		if (request.getCustomerSurname().isEmpty()) {
-			throw new BusinessException(402, "Customer surname can not be null");
+			throw new BusinessException(108, "Customer surname can not be null");
 		}
 
 		if (request.getEmail().isEmpty()) {
-			throw new BusinessException(403, "Customer email can not be null");
+			throw new BusinessException(109, "Customer email can not be null");
 		}
 		if (request.getAddress().isEmpty()) {
-			throw new BusinessException(404, "Customer address can not be null");
+			throw new BusinessException(110, "Customer address can not be null");
 		}
 	}
 
@@ -114,7 +114,7 @@ public class CustomerServiceImpl implements CustomerService {
 				.findFirst().orElse(null);
 		if (customer != null) {
 			LOGGER.error("Email Check Failed");
-			throw new BusinessException(405, "Customer email is already registered!");
+			throw new BusinessException(111, "Customer email is already registered!");
 		}
 	}
 

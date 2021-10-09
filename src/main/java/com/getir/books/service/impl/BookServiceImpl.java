@@ -45,7 +45,7 @@ public class BookServiceImpl implements BookService {
 		try {
 			Book book = bookRepository.findByBookName(request.getBookName());
 			if (book == null) {
-				throw new BusinessException(404, "Book can not found");
+				throw new BusinessException(101, "Book can not found");
 			}
 			book.setBookCount(request.getBookCount());
 			book.setBookPrice(request.getBookPrice());
@@ -61,17 +61,17 @@ public class BookServiceImpl implements BookService {
 
 	private void validateBookRequest(BookRequest request) {
 		if (request.getBookName().isEmpty()) {
-			throw new BusinessException(401, "Book name can not be null");
+			throw new BusinessException(102, "Book name can not be null");
 		}
 		Book book = bookRepository.findByBookName(request.getBookName());
 		if (book != null) {
-			throw new BusinessException(408, "Book is already registered!");
+			throw new BusinessException(103, "Book is already registered!");
 		}
 		if (request.getBookCount() == null || request.getBookCount() == 0) {
-			throw new BusinessException(402, "Please enter a book count more than zero");
+			throw new BusinessException(104, "Please enter a book count more than zero");
 		}
 		if (request.getBookPrice() == null || request.getBookPrice().equals(new BigDecimal(0))) {
-			throw new BusinessException(403, "Please enter a book price more than zero");
+			throw new BusinessException(105, "Please enter a book price more than zero");
 		}
 	}
 
