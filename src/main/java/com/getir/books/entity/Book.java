@@ -12,8 +12,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -27,7 +25,7 @@ public class Book implements Serializable {
 	private static final long serialVersionUID = 1879989883104980571L;
 
 	@Id
-	@GeneratedValue(strategy  = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long bookId;
 
 	@Column(name = "book_name")
@@ -38,10 +36,10 @@ public class Book implements Serializable {
 
 	@Column(name = "book_count")
 	private int bookCount;
-	
+
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "book", cascade = CascadeType.ALL)
-    private List<Order> orderList = new ArrayList<>();
-	
+	private List<Order> orderList = new ArrayList<>();
+
 	public Long getBookId() {
 		return bookId;
 	}
@@ -73,7 +71,7 @@ public class Book implements Serializable {
 	public void setBookCount(int bookCount) {
 		this.bookCount = bookCount;
 	}
-	
+
 	public List<Order> getOrderList() {
 		return orderList;
 	}
@@ -81,5 +79,5 @@ public class Book implements Serializable {
 	public void setOrderList(List<Order> orderList) {
 		this.orderList = orderList;
 	}
-	
+
 }
