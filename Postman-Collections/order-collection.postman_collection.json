@@ -1,0 +1,79 @@
+{
+	"info": {
+		"_postman_id": "d36e3a1f-ad70-4803-af1d-1bd73312fa52",
+		"name": "order-collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "order-create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"customerId\": 3,\r\n  \"orderList\": [\r\n    {\r\n      \"bookId\": 1,\r\n      \"bookCount\": 5,\r\n      \"endDate\": \"2021-08-08T12:55:26.060Z\",\r\n      \"orderName\": \"Auğustos Siparişi\",\r\n      \"startDate\": \"2021-08-08T12:55:26.060Z\"\r\n    },\r\n    {\r\n      \"bookId\": 2,\r\n      \"bookCount\": 1,\r\n      \"endDate\": \"2021-09-08T12:55:26.060Z\",\r\n      \"orderName\": \"Eylül Siparişi\",\r\n      \"startDate\": \"2021-09-08T12:55:26.060Z\"\r\n    }\r\n  ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/order/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"order",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "order-getByDates",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"endDate\": \"2021-10-08T15:55:26Z\",\r\n  \"startDate\": \"2021-10-08T15:55:26Z\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/order/getByDates",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"order",
+						"getByDates"
+					],
+					"query": [
+						{
+							"key": "endDate",
+							"value": "2021-10-08 15:55:26",
+							"disabled": true
+						},
+						{
+							"key": "startDate",
+							"value": "2021-10-08 15:55:26",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

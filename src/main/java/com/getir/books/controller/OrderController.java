@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.getir.books.exceptions.ApiResponseBuilder;
 import com.getir.books.model.ApiResponse;
+import com.getir.books.model.DateRequest;
 import com.getir.books.model.OrderRequest;
 import com.getir.books.service.OrderService;
 
@@ -35,9 +35,9 @@ public class OrderController {
 		return ApiResponseBuilder.successResponse(response);
 	}
 
-	@GetMapping(value = "/getByDates", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<ApiResponse> getOrdersByDate(@RequestParam String startDate, @RequestParam String endDate) {
-		ApiResponse response = orderService.getByDates(startDate, endDate);
+	@PostMapping(value = "/getByDates", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<ApiResponse> getOrdersByDate(@RequestBody DateRequest request) {
+		ApiResponse response = orderService.getByDates(request.getStartDate(), request.getEndDate());
 		return ApiResponseBuilder.successResponse(response);
 	}
 

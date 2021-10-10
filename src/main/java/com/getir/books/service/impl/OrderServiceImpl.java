@@ -2,6 +2,7 @@ package com.getir.books.service.impl;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -91,9 +92,8 @@ public class OrderServiceImpl implements OrderService {
 		}
 	}
 
-	// TODO hataya bakilacak.
 	@Override
-	public ApiResponse getByDates(String startDate, String endDate) {
+	public ApiResponse getByDates(Date startDate, Date endDate) {
 		try {
 			List<Order> orderList = orderRepository.findByDates(startDate, endDate);
 			List<OrderModel> responseList = new ArrayList<>();
@@ -141,7 +141,7 @@ public class OrderServiceImpl implements OrderService {
 
 	private Book bookControl(Long bookId, int orderBookCount) {
 		Book book = bookRepository.findByBookId(bookId);
-		if (book.getBookCount() - orderBookCount <= 0) {
+		if (book.getBookCount() - orderBookCount < 0) {
 			throw new BusinessException(120, "There is not enough book on the stocks");
 		}
 		book.setBookCount(book.getBookCount() - orderBookCount);

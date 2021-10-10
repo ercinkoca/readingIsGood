@@ -1,5 +1,6 @@
 package com.getir.books.repository;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -16,7 +17,7 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 	Order findByOrderId(@Param("orderId") Long orderId);
 
 	@Query("Select o from Order o where o.startDate = :startDate and o.endDate = :endDate")
-	List<Order> findByDates(@Param("startDate") String startDate, @Param("endDate") String endDate);
+	List<Order> findByDates(@Param("startDate") Date startDate, @Param("endDate") Date endDate);
 
 	@Query("Select o from Order o where o.customer.customerId = :customerId")
 	List<Order> findByCustomerId(@Param("customerId") Long customerId);

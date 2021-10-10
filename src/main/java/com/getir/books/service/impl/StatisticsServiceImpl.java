@@ -54,7 +54,7 @@ public class StatisticsServiceImpl implements StatisticsService {
 		}
 	}
 
-	private Statistics calculateData(List<Order> orderList, int month) {
+	public Statistics calculateData(List<Order> orderList, int month) {
 
 		try {
 			int totalBookCount = 0;

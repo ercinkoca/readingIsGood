@@ -17,6 +17,10 @@ public class BookRequest implements Serializable {
 		this.bookCount = bookCount;
 	}
 	
+	public BookRequest() {
+		super();
+	}
+
 	private String bookName;
 	private BigDecimal bookPrice;
 	private Integer bookCount;

@@ -1,0 +1,42 @@
+{
+	"info": {
+		"_postman_id": "4e20ed16-46a3-45ad-a4f7-0a7cbf41a50f",
+		"name": "statistics-collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "statistics-getCustomerStatistics",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/statistics/customer/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"statistics",
+						"customer",
+						"3"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
